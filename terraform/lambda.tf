@@ -60,14 +60,14 @@ resource "aws_iam_role" "webhook_lambda" {
 }
 
 resource "aws_lambda_function" "webhook_lambda" {
-  function_name    = local.resource_name
-  source_code_hash = data.archive_file.tailscale_to_telegram_zip.output_base64sha256
-  filename         = data.archive_file.tailscale_to_telegram_zip.output_path
-  description      = local.lambda_description
-  role             = aws_iam_role.webhook_lambda.arn
-  handler          = local.lambda_handler
-  runtime          = local.lambda_runtime
-  timeout          = local.lambda_timeout
+  function_name                  = local.resource_name
+  source_code_hash               = data.archive_file.tailscale_to_telegram_zip.output_base64sha256
+  filename                       = data.archive_file.tailscale_to_telegram_zip.output_path
+  description                    = local.lambda_description
+  role                           = aws_iam_role.webhook_lambda.arn
+  handler                        = local.lambda_handler
+  runtime                        = local.lambda_runtime
+  timeout                        = local.lambda_timeout
   reserved_concurrent_executions = local.lambda_concurrent_executions
   environment {
     variables = {
